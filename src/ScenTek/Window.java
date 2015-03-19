@@ -1,5 +1,5 @@
 
-package ScenTek;
+package scentek;
 
 import org.lwjgl.Sys;
 import org.lwjgl.glfw.*;

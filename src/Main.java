@@ -1,4 +1,4 @@
-import ScenTek.*;
+import scentek.Game;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Main extends Game{
