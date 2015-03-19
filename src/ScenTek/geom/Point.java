@@ -9,11 +9,11 @@ public class Point {
     /**
      * x component of the Point
      */
-    public final float x;
+    private float x;
     /**
      * y component of the Point
      */
-    public final float y;
+    private float y;
     /**
      * Creates a point at the given x and y
      * @param x x component
@@ -38,5 +38,38 @@ public class Point {
      */
     public float distToSqrd(Point p){
         return (float)(pow(p.x - x, 2)+pow(p.y - x, 2));
+    }
+    /**
+     * Moves the point relative to its position
+     * @param dx the change-in x
+     * @param dy the change-in y
+     */
+    public void translate(float dx, float dy){
+        x += dx;
+        y += dy;
+    }
+    /**
+     * Moves the point to the selected coords
+     * @param x
+     * @param y 
+     */
+    public void assign(float x, float y){
+        this.x = x;
+        this.y = y;
+    }
+    
+    /**
+     * Return x component
+     * @return x component of the point
+     */
+    public float getX(){
+        return x;
+    }
+    /**
+     * Return y component
+     * @return y component
+     */
+    public float getY(){
+        return y;
     }
 }
