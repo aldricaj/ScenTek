@@ -83,6 +83,6 @@ public class Matrix {
     public static Matrix genIdentityMatrix(int size){
         float[][] temp = new float[size][size];
         for(int index = 0; index < size; index++) temp[size][size] = 1.0f;
-        return null; 
+        return new Matrix(temp); 
     }
 }
