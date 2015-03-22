@@ -41,7 +41,7 @@ public class Shader {
      * @throws IOException Thrown if @see StringBuilder throws a FileNotFound or an IOException
      */
     public Shader(String fileName, int t) throws IOException{
-        type = t;
+        
         
         // Build the GLSL src
         StringBuilder shaderSource = new StringBuilder();
@@ -52,10 +52,27 @@ public class Shader {
             shaderSource.append(line).append("\n");
         }
         reader.close();
-        
+        type = t;
         shader_id = glCreateShader(type);
+    }
+    /**
+     * Creates a shader from the passed source
+     * @param src the Shader source material
+     * @param t type of shader
+     */
+    public Shader(StringBuilder src, int t){
+        type = t;
+        shader_id = glCreateShader(type);
+        
+        
+    }
+    /**
+     * Initializes the shader because Java is stupid and won't allow code before the constructor, which prevents having a file reader constructor
+     * @param src the source text(also the source of the need for this method)
+     */
+    private void init(StringBuilder src){
         // assigns source for and compiles the shader 
-        glShaderSource(shader_id, shaderSource);
+        glShaderSource(shader_id, src);
         glCompileShader(shader_id);
     }
 }
