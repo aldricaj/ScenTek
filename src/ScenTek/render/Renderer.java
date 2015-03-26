@@ -1,16 +1,27 @@
 
-package ScenTek;
+package ScenTek.render;
 
 /**
  * This interface will handle rendering
  * @author aaldrich
  */
-public interface Renderer {
+public class Renderer {
+    
+    private Renderer instance;
+    private Renderer(){
+        
+    }
+    
+    public void render(float[][] pts, int[] indices){
+        
+    }
     /**
-     * Renders the passed points using Triangles made from the passed indices
-     * @param pts the points to be rendered. In order in clockwise order
-     * @param indices indices in the pts array that creates triangles
+     * Get an instance of the renderer
+     * @return current instance
      */
-    public void render(float[][] pts, int[] indices);
+    public Renderer getInstance(){
+        return (instance == null) ? (instance = new Renderer()) : (instance); // ensure that instance has been created, if not, make one
+    }
+    
     
 }
