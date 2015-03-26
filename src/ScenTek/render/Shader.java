@@ -21,7 +21,7 @@ public class Shader {
             return type;
         }
     }
-    
+    private StringBuilder src;
     public final int type;
     public final int shader_id;
     
@@ -54,6 +54,7 @@ public class Shader {
         reader.close();
         type = t;
         shader_id = glCreateShader(type);
+        init(shaderSource);
     }
     /**
      * Creates a shader from the passed source
@@ -63,14 +64,23 @@ public class Shader {
     public Shader(StringBuilder src, int t){
         type = t;
         shader_id = glCreateShader(type);
-        
+        init(src);
         
     }
+    /**
+     * Returns the source text for the shader
+     * @return StringBuilder wrapping the source text
+     */
+    public StringBuilder getSource(){
+        return src;
+    }
+    
     /**
      * Initializes the shader because Java is stupid and won't allow code before the constructor, which prevents having a file reader constructor
      * @param src the source text(also the source of the need for this method)
      */
     private void init(StringBuilder src){
+        this.src = src;
         // assigns source for and compiles the shader 
         glShaderSource(shader_id, src);
         glCompileShader(shader_id);
