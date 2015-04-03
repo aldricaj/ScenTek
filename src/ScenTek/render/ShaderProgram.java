@@ -37,19 +37,4 @@ public class ShaderProgram {
         glLinkProgram(program_id);
         glValidateProgram(program_id);
     }
-    /**
-     * Prepares the passed Vertex Array Object to be used by opengl
-     * @param vaoId the VAO to be prepared
-     */
-    public void prepareInputs(int vaoId){
-        for(int i = 0; i < nVar; i++) glBindVertexArray(vaoId);
-    }
-    
-    /**
-     * Returns the number of input variables for the script
-     * @return 
-     */
-    public int getNumVar(){
-        return nVar;
-    }
 }
