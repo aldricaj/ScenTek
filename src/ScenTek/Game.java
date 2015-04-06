@@ -17,7 +17,7 @@ public abstract class Game extends GLFWKeyCallback{
     // We need to strongly reference callback instances.
     private GLFWErrorCallback errorCallback;
     private GLFWKeyCallback   keyCallback;
-    
+    private final int fps_limit = 60;
     private String gameName;
     private Window window;
     
@@ -73,13 +73,16 @@ public abstract class Game extends GLFWKeyCallback{
         GLContext.createFromCurrent();
         
         glClearColor(0.0f,0.0f,0.0f,0.0f);
-        
+        double lastTime = glfwGetTime();
         while ( glfwWindowShouldClose(window.getHandle()) == GL_FALSE ) {
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
+            glClear(GL_COLOR_BUFFER_BIT); // clear the framebuffer
  
-            glfwSwapBuffers(window.getHandle()); // swap the color buffers
- 
-            
+           
+            if(glfwGetTime()-lastTime >= (double)1/fps_limit){
+                update();
+                glfwSwapBuffers(window.getHandle()); // swap the color buffers
+                lastTime = glfwGetTime();
+            }
             glfwPollEvents();// Poll for window events. 
         }
     }
@@ -91,4 +94,6 @@ public abstract class Game extends GLFWKeyCallback{
     }
     
     public abstract void interpretKeys(int key, int action);
+    
+    public abstract void  update();
 }
