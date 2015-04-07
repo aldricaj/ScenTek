@@ -11,6 +11,7 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
+import scentek.Game;
 //TODO finish rendering starting at setting up index VBO
 /**
  *
@@ -125,8 +126,8 @@ public class SimpleRenderer extends Renderer{
         final int program_id;
         SimpleShaderProgram(){
             try {
-                vs = new VertexShader("E:\\GameDev\\GameFrameworks\\ScenTek\\Shaders\\Simple\\simple_shader.vtx");
-                fs = new FragmentShader("E:\\GameDev\\GameFrameworks\\ScenTek\\Shaders\\Simple\\simple_shader.frag");
+                vs = new VertexShader(Game.WORKING_DIR + "\\Shaders\\Simple\\simple_shader.vtx");
+                fs = new FragmentShader(Game.WORKING_DIR + "\\Shaders\\Simple\\simple_shader.frag");
             } catch (IOException ex) {
                 Logger.getLogger(SimpleRenderer.class.getName()).log(Level.SEVERE, null, ex);
             }

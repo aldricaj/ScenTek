@@ -1,5 +1,6 @@
 import ScenTek.render.*;
 import java.awt.Color;
+import java.util.Random;
 import scentek.Game;
 import static org.lwjgl.glfw.GLFW.*;
 
@@ -28,10 +29,11 @@ public class Main extends Game{
     @Override
     public void update(){
         if (r == null)
-            r = new SimpleRenderer(); 
-        r.setColor(Color.ORANGE);
+            r = new SimpleRenderer();  
+        
+        
         float[] vertices = {
-                -0.5f, 0.5f, 0f, 1f,
+                -0.5f, 0.5f, 0.0f, 1f,
                 -0.5f, -0.5f, 0f, 1f,
                 0.5f, -0.5f, 0f, 1f,
                 0.5f, 0.5f, 0f, 1f
@@ -41,5 +43,6 @@ public class Main extends Game{
                 2, 3, 0
         };
         r.render(vertices, indices);
+       
     }
 }

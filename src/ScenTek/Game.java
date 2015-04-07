@@ -17,9 +17,11 @@ public abstract class Game extends GLFWKeyCallback{
     // We need to strongly reference callback instances.
     private GLFWErrorCallback errorCallback;
     private GLFWKeyCallback   keyCallback;
-    private final int fps_limit = 60;
+    private final int fps_limit = 800;
     private String gameName;
     private Window window;
+    
+    public static final String WORKING_DIR = System.getProperty("user.dir");
     
     public Game(String name, boolean windowed){
         gameName = name;
