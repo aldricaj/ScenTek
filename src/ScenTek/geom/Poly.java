@@ -30,6 +30,21 @@ public class Poly {
         return center;
     }
     
+    public Point[] getPoints(){
+        return points;
+    }
+    
+    public float[] getAsArray(){
+        float[] pts = new float[points.length*2];
+        int index = 0;
+        for(Point p : points){
+            pts[index] = points[index].getX();
+            pts[index+1] = points[index].getY();
+            index += 2;
+        }
+        return pts;
+    }
+    
     public boolean contains(Point p){
         // TODO create this method
         // figure out whether it is better to have intensive programming in constructor, or if its better to have it in-method(leaning towards constructor
