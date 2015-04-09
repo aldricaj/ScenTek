@@ -29,7 +29,7 @@ public class Main extends Game{
     @Override
     public void update(){
         if (r == null)
-            r = new SimpleRenderer();  
+            r = SimpleRenderer.getInstance();  
         
         
         float[] vertices = {

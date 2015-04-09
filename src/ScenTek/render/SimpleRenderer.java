@@ -23,7 +23,16 @@ public class SimpleRenderer extends Renderer{
     private boolean colorHasChanged;
     private int colorVBO, vertVBO, indexVBO;
     private static SimpleShaderProgram shader;
-    public SimpleRenderer() {
+    private static SimpleRenderer instance;
+    /**
+     * Returns an instance of SimpleRenderer
+     * @return 
+     */
+    public static SimpleRenderer getInstance(){
+        return ((instance == null) ? (instance = new SimpleRenderer()) : (instance));
+    }
+    
+    private SimpleRenderer() {
         color = new float[4];
         if(shader == null) shader = new SimpleShaderProgram();
     }

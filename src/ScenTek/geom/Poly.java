@@ -1,6 +1,7 @@
 
 package ScenTek.geom;
 
+import java.awt.geom.Path2D;
 import javax.naming.OperationNotSupportedException;
 
 /**
