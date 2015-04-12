@@ -32,7 +32,7 @@ public class SimpleRenderer extends Renderer{
         return ((instance == null) ? (instance = new SimpleRenderer()) : (instance));
     }
     
-    private SimpleRenderer() {
+    public SimpleRenderer() {
         color = new float[4];
         if(shader == null) shader = new SimpleShaderProgram();
     }

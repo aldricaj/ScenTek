@@ -38,10 +38,11 @@ public class Poly {
     public float[] getAsArray(){
         float[] pts = new float[points.length*2];
         int index = 0;
-        for(Point p : points){
-            pts[index] = points[index].getX();
-            pts[index+1] = points[index].getY();
-            index += 2;
+        
+        for(int i = 0; i < pts.length; i += 2){
+            pts[i] = points[index].getX();
+            pts[i+1] = points[index].getY();
+            index++;
         }
         return pts;
     }

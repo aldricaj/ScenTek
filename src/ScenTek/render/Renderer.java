@@ -1,6 +1,7 @@
 
 package ScenTek.render;
 
+import java.util.Arrays;
 import static org.lwjgl.opengl.GL11.*;
 
 /**

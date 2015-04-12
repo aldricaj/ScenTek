@@ -33,16 +33,17 @@ public class Main extends Game{
     public void update(){
         if (r == null)
             r = SimpleRenderer.getInstance();  
-        
-        
+        r.setColor(Color.red);
+        r.render(new float[]{0.0f,0.0f,-0.5f, 0.0f, -0.5f, -0.5f, 0.0f, 0.5f}, new byte[]{0,1,2,2,3,0});
         Point[] p = new Point[]{
             new Point(0.0f, 0.0f),
             new Point(0.5f, 0.0f),
             new Point(0.5f, 0.5f),
             new Point(0.0f, 0.5f)
         };
-        RenderablePoly po = new RenderablePoly(Color.CYAN, p);
+        RenderablePoly po = new RenderablePoly(Color.RED, p);
         po.render();
-       
+        
+        
     }
 }

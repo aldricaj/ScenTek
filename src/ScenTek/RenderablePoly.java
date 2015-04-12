@@ -9,6 +9,7 @@ import ScenTek.geom.Point;
 import ScenTek.geom.Poly;
 import ScenTek.render.SimpleRenderer;
 import java.awt.Color;
+import java.util.Arrays;
 
 /**
  *
@@ -32,11 +33,9 @@ public class RenderablePoly extends Poly implements Renderable{
         
         tris = new byte[indices.length * 3];
         
-        for(int index = 0; index < indices.length; index++){
-            for(int index2 = 0; index < 3; index2++){
-                System.out.println("" + (index + index2));
-                tris[index * index2] = indices[index][index2];
-            }
+        for(int index = 0; index < tris.length; index++){
+            tris[index] = indices[index/3][index%3];
+            
         }
     }
     

@@ -72,4 +72,8 @@ public class Point {
     public float getY(){
         return y;
     }
+    
+    public String toString(){
+        return new String("(" + this.getX() + "," + this.getY() + ")");
+    }
 }
