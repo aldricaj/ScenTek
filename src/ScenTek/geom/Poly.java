@@ -2,6 +2,7 @@
 package ScenTek.geom;
 
 import java.awt.geom.Path2D;
+import java.util.Arrays;
 import javax.naming.OperationNotSupportedException;
 
 /**
@@ -36,14 +37,19 @@ public class Poly {
     }
     
     public float[] getAsArray(){
-        float[] pts = new float[points.length*2];
+        float[] fPts = new float[points.length*4];
         int index = 0;
-        for(Point p : points){
-            pts[index] = points[index].getX();
-            pts[index+1] = points[index].getY();
-            index += 2;
+        while(index < fPts.length){
+            fPts[index] = points[index/4].getX();
+            index++;
+            fPts[index] = points[index/4].getY();
+            index++;
+            fPts[index] = 0;
+            index++;
+            fPts[index] = 1.0f;
+            index++;
         }
-        return pts;
+        return fPts;
     }
     
     public boolean contains(Point p){
