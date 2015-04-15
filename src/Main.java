@@ -8,8 +8,9 @@ import scentek.Game;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Main extends Game{
+    private RenderablePoly po;
     public static void main(String[] args){
-        new Main("Hello!");
+        new Main("Hello!", false);
     }
     public Main(String name){
         super(name);
@@ -21,8 +22,12 @@ public class Main extends Game{
     
     @Override
     public void interpretKeys(int key, int action){
-        if(key == GLFW_KEY_F11){
+        if(key == GLFW_KEY_F11 && action == GLFW_RELEASE){
             toggleFullscreen();
+        }
+        if(key == GLFW_KEY_SPACE && action == GLFW_RELEASE){
+            po.toggleVisibility();
+            System.out.println(""+ po.isVisible());
         }
         if(key == GLFW_KEY_ESCAPE){
             endGame();
@@ -41,7 +46,7 @@ public class Main extends Game{
             new Point(0.5f, 0.5f),
             new Point(0.0f, 0.5f)
         };
-        RenderablePoly po = new RenderablePoly(Color.CYAN, p);
+        po = new RenderablePoly(Color.CYAN, p);
         po.render();
        
     }

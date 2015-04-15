@@ -29,8 +29,8 @@ public abstract class Game extends GLFWKeyCallback{
             init();
             //create window
             //TODO: implement a read settings to create window(maybe a constructor?)
-            window = new Window(gameName, 800, 600, true);
-                    
+            window = new Window(gameName, 600, 800, windowed);
+            
             // Setup a key callback. It will be called every time a key is pressed, repeated or released.
             glfwSetKeyCallback(window.getHandle(), this);
             // Enable v-sync
@@ -77,7 +77,7 @@ public abstract class Game extends GLFWKeyCallback{
         glClearColor(0.0f,0.0f,0.0f,0.0f);
         double lastTime = glfwGetTime();
         while ( glfwWindowShouldClose(window.getHandle()) == GL_FALSE ) {
-            glClear(GL_COLOR_BUFFER_BIT); // clear the framebuffer
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
  
            
             if(glfwGetTime()-lastTime >= (double)1/fps_limit){
