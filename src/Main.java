@@ -35,7 +35,7 @@ public class Main extends Game{
     }
     SimpleRenderer r;
     @Override
-    public void update(){
+    public void update(double elapsed){
         if (r == null)
             r = SimpleRenderer.getInstance();  
         
