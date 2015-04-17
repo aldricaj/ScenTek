@@ -17,23 +17,24 @@ import static org.lwjgl.system.MemoryUtil.*;
 */
 public class Window {
  
-    
+    /**Whether or not the window is windowed*/ 
     private boolean windowed;
     
     // Window settings
+    /**The size of the window*/
     private int winWidth, winHeight;//TODO changed in constructor
+    /**initial size of the window*/
     private final int initWidth, initHeight;
+    /**The title of the window*/
     private String title = "Hello";
-    
-    
-    // The window handle
+    /**The window's id in opengl*/
     private long window;
+    
     /**
      * 
      * @param title title of the window
      * @param width initial width of the window
      * @param height initial height of the window
-     * @param keyListener input manager
      */
     protected Window(String title, int width, int height){
         this.title = title;
@@ -44,7 +45,13 @@ public class Window {
         goWindowed(width, height);
         
     }
-    
+    /**
+     * Creates a window
+     * @param title title of the window
+     * @param width starting width of the window
+     * @param height starting height of the window
+     * @param fullscreen whether or not the window starts fullscreen
+     */
     protected Window(String title, int width, int height, boolean fullscreen){
         this.title = title;
         winWidth = height;
@@ -54,7 +61,9 @@ public class Window {
         windowed = !fullscreen;
         toggleFullscreen();
     }
-    
+    /**
+     * Toggles the window between fullscreen and windowed mode
+     */
     protected void toggleFullscreen(){
         windowed = !windowed;
         if(!windowed){
@@ -64,7 +73,9 @@ public class Window {
             
         }
     }
-    
+    /**
+     * Sets the window to fullscreen mode
+     */
     protected void goFullscreen(){
         
         ByteBuffer vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
@@ -79,9 +90,17 @@ public class Window {
         }
         windowed = false;
     }
+    /**
+     * Changes the screen to windowed mode with the initial width and height
+     */
     protected void goWindowed(){
         goWindowed(initWidth, initHeight);
     }
+    /**
+     * Changes the screen to windowed mode with the passed width and height
+     * @param width
+     * @param height 
+     */
     protected void goWindowed(int width, int height){
         long oldWindow;
         
@@ -93,12 +112,18 @@ public class Window {
         }
         windowed = true;
     }
-    
+    /**
+     * 
+     * @return the current OpenGL handle of the window
+     */
     protected long getHandle(){
         return window;
     }
     
-    
+    /**
+     * Changes over the window to a new window handle
+     * @param newWindow the new handle
+     */
     private void swapWindows(long newWindow){
         long oldWindow = window;
         window = newWindow;
@@ -107,7 +132,9 @@ public class Window {
         glfwDestroyWindow(oldWindow);
         
     }
- 
+    /**
+     * initializes the window
+     */
     private void init() {
  
         // Create the window

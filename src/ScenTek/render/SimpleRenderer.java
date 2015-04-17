@@ -4,6 +4,7 @@ package ScenTek.render;
 import java.awt.Color;
 import java.io.IOException;
 import java.nio.*;
+import java.util.Arrays;
 import java.util.logging.*;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
@@ -18,10 +19,11 @@ import scentek.Game;
  * @author Andrew
  */
 public class SimpleRenderer extends Renderer{
-    
+    /**The color that is currently being used to render. The default is Red*/
     private float[] color = {1.0f, 0.0f, 0.0f, 1.0f};
-    private boolean colorHasChanged;
+    /**VBO id for a feature*/
     private int colorVBO, vertVBO, indexVBO;
+    /**The shader used*/
     private static SimpleShaderProgram shader;
     private static SimpleRenderer instance;
     /**
@@ -31,11 +33,16 @@ public class SimpleRenderer extends Renderer{
     public static SimpleRenderer getInstance(){
         return ((instance == null) ? (instance = new SimpleRenderer()) : (instance));
     }
-    
+    /**
+     * Creates the renderer, should only be called by @see getInstance()
+     */
     private SimpleRenderer() {
         color = new float[4];
         if(shader == null) shader = new SimpleShaderProgram();
     }
+    /**
+     * Initialized the vao, vbos, and the shaders
+     */
     private void init(){
         //create & bind VAO for use
         vao = glGenVertexArrays();
@@ -47,10 +54,20 @@ public class SimpleRenderer extends Renderer{
         glBindAttribLocation(shader.program_id, 0, "in_Position");
         glBindAttribLocation(shader.program_id, 1, "in_Color");
     }
+    /**
+     * Sets the render color to the passed color. converted into a 4 size array
+     * @param c 
+     */
     public void setColor(Color c){
         color = c.getColorComponents(color);
     }
-    
+    /**
+     * Sets the color to the passed color
+     * @param r red component
+     * @param g green component
+     * @param b blue component
+     * @param a alpha component
+     */
     public void setColor(float r, float g, float b, float a){
         color[0] = r;
         color[1] = g;
@@ -129,7 +146,9 @@ public class SimpleRenderer extends Renderer{
         glBindVertexArray(0);
         glUseProgram(0);
     }
-    
+    /**
+     * Represents the shader program
+     */
     private class SimpleShaderProgram {
         private Shader vs, fs;
         final int program_id;

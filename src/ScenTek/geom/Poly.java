@@ -10,12 +10,14 @@ import javax.naming.OperationNotSupportedException;
  * @author aaldrich
  */
 public class Poly {
-    
+    /**The list of all the points in the shape*/
     private Point[] points;
-    /**
-     * the average of all the points
-     */
+    /**The average of all the points*/
     private Point center;
+    /**
+     * Creates the Poly with the given points
+     * @param points the points to use for vertices
+     */
     public Poly(Point[] points){
         this.points = points;
         
@@ -27,15 +29,23 @@ public class Poly {
         }
         center = new Point(sumX/length, sumY/length);
     }
-    
+    /**
+     * Returns the center of the shape
+     * @return the average of all the points in the shaper
+     */
     public Point getCenter(){
         return center;
     }
-    
+    /**
+     * @return An array of all the points in the shape
+     */
     public Point[] getPoints(){
         return points;
     }
-    
+    /**
+     * Puts the points into a 4-var format [x, y, z, w] and returns them as a single array
+     * @return all the points in the 4 var format
+     */
     public float[] getAsArray(){
         float[] fPts = new float[points.length*4];
         int index = 0;
@@ -50,12 +60,6 @@ public class Poly {
             index++;
         }
         return fPts;
-    }
-    
-    public boolean contains(Point p){
-        // TODO create this method
-        // figure out whether it is better to have intensive programming in constructor, or if its better to have it in-method(leaning towards constructor
-        return false;
     }
     
     public void translate(float dx, float dy) throws OperationNotSupportedException{

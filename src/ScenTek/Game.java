@@ -56,7 +56,7 @@ public abstract class Game extends GLFWKeyCallback{
     /**
      * Toggles fullscreen mode
      */
-    public void toggleFullscreen(){
+    public void toggleFullscreen(){// Bug occurs resulting any shape to lose it's color and change to white when this method is used
         window.toggleFullscreen();
         glfwSetKeyCallback(window.getHandle(), this);
     }
@@ -87,7 +87,7 @@ public abstract class Game extends GLFWKeyCallback{
         System.out.println("Hello LWJGL " + Sys.getVersion() + "!");
         
         GLContext.createFromCurrent();
-        
+        initVars();
         glClearColor(0.0f,0.0f,0.0f,0.0f);
         double lastTime = glfwGetTime();
         while ( glfwWindowShouldClose(window.getHandle()) == GL_FALSE ) {
@@ -124,4 +124,8 @@ public abstract class Game extends GLFWKeyCallback{
      * @param elapsed the time elapsed since last frame
      */
     public abstract void  update(double elapsed);
+    /**
+     * Initializes variable that require an opengl context
+     */
+    public abstract void initVars();
 }
