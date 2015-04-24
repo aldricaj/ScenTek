@@ -1,6 +1,7 @@
 
 package ScenTek.render;
 
+import ScenTek.geom.Vertex;
 import java.awt.Color;
 
 /**

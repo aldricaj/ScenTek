@@ -5,8 +5,9 @@
  */
 package ScenTek;
 
-import ScenTek.geom.Point;
+import ScenTek.geom.Vertex;
 import ScenTek.geom.Poly;
+import ScenTek.render.ColoredVertex;
 import ScenTek.render.SimpleRenderer;
 import java.awt.Color;
 import java.util.Arrays;
@@ -16,7 +17,7 @@ import java.util.Arrays;
  * @author aldrich_a
  */
 public class RenderablePoly extends Poly implements Renderable{
-    private Color color;
+    private Color[] colors;
     private static SimpleRenderer renderer = SimpleRenderer.getInstance();
     private byte[] tris;
     private boolean visible;
@@ -25,11 +26,10 @@ public class RenderablePoly extends Poly implements Renderable{
      * @param c color that the poly will appear as
      * @param p vertices for the polygon
      */
-    public RenderablePoly(Color c, Point[] p){
+    public RenderablePoly(Color c, Vertex[] p){
         super(p);
-        color = c;
         // generate render indexes
-        Point[] pts = super.getPoints();
+        Vertex[] pts = super.getPoints();
         byte[][] indices = new byte[pts.length - 2][3];
         
         byte lastIndex = 1;
@@ -44,6 +44,11 @@ public class RenderablePoly extends Poly implements Renderable{
         }
         visible = true;
     }
+    
+    public RenderablePoly(ColoredVertex[] verts){
+        super(verts);
+    }
+    
     /**
      * Creates a renderable poly by copying the points from the passed Poly
      * @param c color to be used
@@ -56,7 +61,7 @@ public class RenderablePoly extends Poly implements Renderable{
      * Creates a Renderable Poly with a default red color
      * @param points points to use as vertices
      */
-    public RenderablePoly(Point[] points) {
+    public RenderablePoly(Vertex[] points) {
         this(Color.RED, points);
         
     }
@@ -66,14 +71,17 @@ public class RenderablePoly extends Poly implements Renderable{
      * @param c color to be used
      */
     public void setColor(Color c){
-        color = c;
+        colors = new Color[super.getPoints().length];
+        for(int i = 0; i < colors.length; i++){
+            colors[i] = c;
+        }
     }
     /**
      * Returns the currently used color
      * @return the current color
      */
-    public Color getColor(){
-        return color;
+    public Color[] getColor(){
+        return colors;
     }
     /**
      * States whether or not the Poly will be rendered
@@ -102,7 +110,7 @@ public class RenderablePoly extends Poly implements Renderable{
      */
     public void render() {
         if(!visible) return;
-        renderer.setColor(color);
+        //renderer.setColor(colors);
         renderer.render(super.getAsArray(), tris);
         
     }

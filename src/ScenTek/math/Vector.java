@@ -5,7 +5,7 @@
  */
 package ScenTek.math;
 
-import ScenTek.geom.Point;
+import ScenTek.geom.Vertex;
 import static java.lang.Math.*;
 /**
  *
@@ -32,7 +32,7 @@ public class Vector {
      * Creates a Vector from the passed point 
      * @param p the dx and dy of the vector
      */
-    public Vector(Point p){
+    public Vector(Vertex p){
         x = p.getX();
         y = p.getY();
         magnitude = (float) sqrt(x*x+y*y);
@@ -67,7 +67,7 @@ public class Vector {
      */
     public void normalize(){
         magnitude = 1;
-        Point p = this.getAsPoint();
+        Vertex p = this.getAsPoint();
         x = p.getX();
         y = p.getY();
     }
@@ -102,8 +102,8 @@ public class Vector {
      * Returns the point values for the vector
      * @return the vector as (dx, dy)
      */
-    public Point getAsPoint(){
+    public Vertex getAsPoint(){
         
-        return new Point(x, y);
+        return new Vertex(x, y);
     }
 }

@@ -11,35 +11,35 @@ import javax.naming.OperationNotSupportedException;
  */
 public class Poly {
     /**The list of all the points in the shape*/
-    private Point[] points;
+    private Vertex[] points;
     /**The average of all the points*/
-    private Point center;
+    private Vertex center;
     /**
      * Creates the Poly with the given points
      * @param points the points to use for vertices
      */
-    public Poly(Point[] points){
+    public Poly(Vertex[] points){
         this.points = points;
         
         int length = points.length;
         int sumX = 0, sumY = 0;
-        for(Point p : points){
+        for(Vertex p : points){
             sumX += p.getX();
             sumY += p.getY();
         }
-        center = new Point(sumX/length, sumY/length);
+        center = new Vertex(sumX/length, sumY/length);
     }
     /**
      * Returns the center of the shape
      * @return the average of all the points in the shaper
      */
-    public Point getCenter(){
+    public Vertex getCenter(){
         return center;
     }
     /**
      * @return An array of all the points in the shape
      */
-    public Point[] getPoints(){
+    public Vertex[] getPoints(){
         return points;
     }
     /**

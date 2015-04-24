@@ -1,5 +1,5 @@
 import ScenTek.RenderablePoly;
-import ScenTek.geom.Point;
+import ScenTek.geom.Vertex;
 import ScenTek.geom.Poly;
 import ScenTek.render.*;
 import java.awt.Color;
@@ -27,11 +27,11 @@ public class Main extends Game{
             r = SimpleRenderer.getInstance();  
         
         gen = new Random();
-        Point[] p = new Point[]{
-            new Point(0.0f, 0.0f),
-            new Point(0.5f, 0.0f),
-            new Point(0.5f, 0.5f),
-            new Point(0.0f, 0.5f)
+        Vertex[] p = new Vertex[]{
+            new Vertex(0.0f, 0.0f),
+            new Vertex(0.5f, 0.0f),
+            new Vertex(0.5f, 0.5f),
+            new Vertex(0.0f, 0.5f)
         };
         po = new RenderablePoly(Color.CYAN, p);
     }
