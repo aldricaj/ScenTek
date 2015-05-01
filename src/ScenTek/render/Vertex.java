@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ScenTek.geom;
+package ScenTek.render;
 
 /**
  *
@@ -11,7 +11,7 @@ package ScenTek.geom;
  */
 public class Vertex {
     private float[] coords;
-    private int componentSize = 4;
+    public static final int num_elements = 4;
     public static final int element_size = 4;
     public Vertex(float[] coords){
         if(coords.length == 4) this.coords = coords;
@@ -51,7 +51,7 @@ public class Vertex {
         return coords;
     }
     
-    public int getSize(){
-        return componentSize;
+    public static int getSize(){
+        return num_elements * element_size;
     }
 }

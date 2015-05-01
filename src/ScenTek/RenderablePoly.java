@@ -5,7 +5,7 @@
  */
 package ScenTek;
 
-import ScenTek.geom.Vertex;
+import ScenTek.render.Vertex;
 import ScenTek.geom.Poly;
 import ScenTek.render.ColoredVertex;
 import ScenTek.render.SimpleRenderer;

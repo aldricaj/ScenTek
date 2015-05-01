@@ -1,7 +1,7 @@
 
 package ScenTek;
 
-import ScenTek.geom.Vertex;
+import ScenTek.render.Vertex;
 import javax.naming.OperationNotSupportedException;
 
 /**

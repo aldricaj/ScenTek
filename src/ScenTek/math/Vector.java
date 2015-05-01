@@ -5,7 +5,7 @@
  */
 package ScenTek.math;
 
-import ScenTek.geom.Vertex;
+import ScenTek.render.Vertex;
 import static java.lang.Math.*;
 /**
  *

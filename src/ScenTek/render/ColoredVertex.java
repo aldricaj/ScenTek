@@ -1,7 +1,6 @@
 
 package ScenTek.render;
 
-import ScenTek.geom.Vertex;
 import java.awt.Color;
 
 /**
@@ -11,8 +10,8 @@ import java.awt.Color;
 public class ColoredVertex extends Vertex{
     /**The color of the vertex*/
     private Color color;
-    /**The size of the vertex when passed to a shader*/
-    private int componentSize = 8;
+    
+    public static final int num_elements = Vertex.num_elements + 4;
     private float[] rgba;
     public ColoredVertex(float[] coords, Color c){
         super(coords);
@@ -29,8 +28,7 @@ public class ColoredVertex extends Vertex{
         return rgba;
     }
     
-    @Override
-    public int getSize(){
-        return componentSize;
+    public static int getSize(){
+        return num_elements * Vertex.element_size;
     }
 }

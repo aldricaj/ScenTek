@@ -1,6 +1,7 @@
 
 package ScenTek.geom;
 
+import ScenTek.render.Vertex;
 import java.awt.geom.Path2D;
 import java.util.Arrays;
 import javax.naming.OperationNotSupportedException;

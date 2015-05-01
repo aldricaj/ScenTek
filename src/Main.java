@@ -1,5 +1,5 @@
 import ScenTek.RenderablePoly;
-import ScenTek.geom.Vertex;
+import ScenTek.render.Vertex;
 import ScenTek.geom.Poly;
 import ScenTek.render.*;
 import java.awt.Color;
