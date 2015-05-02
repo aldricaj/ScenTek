@@ -1,5 +1,5 @@
 
-package scentek;
+package ScenTek;
 
 import org.lwjgl.Sys;
 import static org.lwjgl.opengl.GL11.*;

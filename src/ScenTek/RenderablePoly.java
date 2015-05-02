@@ -111,7 +111,7 @@ public class RenderablePoly extends Poly implements Renderable{
     public void render() {
         if(!visible) return;
         //renderer.setColor(colors);
-        renderer.render(super.getAsArray(), tris);
+        //renderer.render(super.getAsArray(), tris);
         
     }
 }
