@@ -9,7 +9,7 @@ package ScenTek.render;
  *
  * @author aldrich_a
  */
-public class Vertex {
+public abstract class Vertex {
     private float[] coords;
     public static final int num_elements = 4;
     public static final int element_size = 4;
