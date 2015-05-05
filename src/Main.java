@@ -4,7 +4,7 @@ import ScenTek.geom.Poly;
 import ScenTek.render.*;
 import java.awt.Color;
 import java.util.Random;
-import scentek.Game;
+import ScenTek.Game;
 import static org.lwjgl.glfw.GLFW.*;
 
 public class Main extends Game{

@@ -12,17 +12,17 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
-import scentek.Game;
+import ScenTek.Game;
 //TODO finish rendering starting at setting up index VBO
 /**
  *
  * @author Andrew
  */
-public class SimpleRenderer extends Renderer{
+public class SimpleRenderer {
     /**The color that is currently being used to render. The default is Red*/
-    private float[] color = {1.0f, 0.0f, 0.0f, 1.0f};
+    private float[] color = {1.0f, 0.0f, 0.0f, 1.0f}, points = {1.0f, 0.0f};
     /**VBO id for a feature*/
-    private int colorVBO, vertVBO, indexVBO;
+    private int colorVBO, vertVBO, indexVBO, vao;
     /**The shader used*/
     private static SimpleShaderProgram shader;
     private static SimpleRenderer instance;
@@ -75,7 +75,7 @@ public class SimpleRenderer extends Renderer{
         color[3] = a;
     }
 
-    @Override
+    
     protected void loadSettings() {
         // ensure that the VAO is created
         if(vao < 0) init();
@@ -83,14 +83,14 @@ public class SimpleRenderer extends Renderer{
         // 1) UPDATE
             //updates the buffers to be loaded into the VAO
                 // VERTICES
-                FloatBuffer vertBuffer = BufferUtils.createFloatBuffer(super.points.length);
-                vertBuffer.put(super.points);
+                FloatBuffer vertBuffer = BufferUtils.createFloatBuffer(points.length);
+                vertBuffer.put(points);
                 vertBuffer.flip();
 
 
                 //COLORS
                     // copy the color so that each vertex has a color
-                    float[] colors = new float[super.points.length * 4/3];
+                    float[] colors = new float[points.length * 4/3];
                     for(int i = 0; i < colors.length; i++){
                         colors[i] = color[i%4];// makes every 4th value equal, copying the color
                     }
@@ -99,7 +99,7 @@ public class SimpleRenderer extends Renderer{
                 colorBuffer.flip();
 
                 // INDICES
-                byte[] indices = super.indices;
+                byte[] indices = null;
                 ByteBuffer indexBuffer = BufferUtils.createByteBuffer(indices.length);
                 indexBuffer.put(indices);
                 indexBuffer.flip();
@@ -138,7 +138,7 @@ public class SimpleRenderer extends Renderer{
         
     }
 
-    @Override
+    
     protected void unloadSettings() {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
         glDisableVertexAttribArray(0);
