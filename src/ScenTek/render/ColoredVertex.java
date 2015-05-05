@@ -18,6 +18,10 @@ public class ColoredVertex extends Vertex{
         rgba = new float[4];
         setColor(c);
     }
+    public ColoredVertex(Vertex v, Color c){
+        this(v.getCoords(), c);
+        
+    }
     
     public void setColor(Color c){
         color = c;

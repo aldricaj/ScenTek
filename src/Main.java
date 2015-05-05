@@ -23,8 +23,6 @@ public class Main extends Game{
         run();
     }
     public void initVars(){
-        if (r == null)
-            r = SimpleRenderer.getInstance();  
         
         gen = new Random();
         Vertex[] p = new Vertex[]{
@@ -50,11 +48,10 @@ public class Main extends Game{
             endGame();
         }
     }
-    SimpleRenderer r;
     @Override
     public void update(double elapsed){
         
-        po.render();
+        po.render(Renderer.getInstance());
        
     }
 }

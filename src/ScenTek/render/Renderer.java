@@ -13,7 +13,7 @@ import org.lwjgl.opengl.GL20;
 import static org.lwjgl.opengl.GL20.*;
 import org.lwjgl.opengl.GL30;
 import static org.lwjgl.opengl.GL30.*;
-import scentek.Game;
+import ScenTek.Game;
 
 /**
  * This interface will handle rendering
@@ -23,10 +23,13 @@ public class Renderer {
     private int simpleVAO, simpleVBO, simpleShaderID, indexVBO;
     private FloatBuffer simpleBuffer;
     private ByteBuffer indexBuffer;
-    
+    private static Renderer instance;
     public enum RenderMode{
         SIMPLE, TEXTURED
     };
+    public static Renderer getInstance(){
+        return (instance == null) ? (instance = new Renderer()) : instance;
+    }
     private Renderer(){
         indexBuffer = BufferUtils.createByteBuffer(2);
         indexVBO = glGenBuffers();
@@ -44,7 +47,7 @@ public class Renderer {
             vs = new VertexShader(Game.WORKING_DIR + "\\Shaders\\Simple\\simple_shader.vtx");
             fs = new FragmentShader(Game.WORKING_DIR + "\\Shaders\\Simple\\simple_shader.frag");
         } catch (IOException ex) {
-            Logger.getLogger(SimpleRenderer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Renderer.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         simpleShaderID = glCreateProgram();
@@ -84,8 +87,9 @@ public class Renderer {
         switch(mode){
             case SIMPLE:
                 if(vertices instanceof ColoredVertex[]){
-                    simpleBuffer.limit(vertices.length * ColoredVertex.getSize());
+                    
                     for(ColoredVertex v : (ColoredVertex[])vertices){
+                        simpleBuffer = BufferUtils.createFloatBuffer((ColoredVertex.num_elements + Vertex.num_elements) * vertices.length);
                         simpleBuffer.put(v.getCoords());
                         simpleBuffer.put(v.getRGBA());
                     }
@@ -112,12 +116,13 @@ public class Renderer {
         }
         
         // load index data
-        indexBuffer.limit(vertOrder.length);
+        indexBuffer = BufferUtils.createByteBuffer(vertOrder.length);
         indexBuffer.put(vertOrder);
         indexBuffer.flip();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexVBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indexBuffer, GL_STATIC_DRAW);
         // render
+        System.out.println("render");
         glDrawElements(GL_TRIANGLES, vertOrder.length, GL_UNSIGNED_BYTE, 0);
         indexBuffer.clear();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);

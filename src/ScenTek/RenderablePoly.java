@@ -8,7 +8,7 @@ package ScenTek;
 import ScenTek.render.Vertex;
 import ScenTek.geom.Poly;
 import ScenTek.render.ColoredVertex;
-import ScenTek.render.SimpleRenderer;
+import ScenTek.render.Renderer;
 import java.awt.Color;
 import java.util.Arrays;
 
@@ -17,8 +17,8 @@ import java.util.Arrays;
  * @author aldrich_a
  */
 public class RenderablePoly extends Poly implements Renderable{
-    private Color[] colors;
-    private static SimpleRenderer renderer = SimpleRenderer.getInstance();
+    ColoredVertex[] verts;
+    
     private byte[] tris;
     private boolean visible;
     /**
@@ -26,11 +26,15 @@ public class RenderablePoly extends Poly implements Renderable{
      * @param c color that the poly will appear as
      * @param p vertices for the polygon
      */
-    public RenderablePoly(Color c, Vertex[] p){
-        super(p);
+    public RenderablePoly(Color c, Vertex[] v){
+        super(v);
         // generate render indexes
-        Vertex[] pts = super.getPoints();
-        byte[][] indices = new byte[pts.length - 2][3];
+        verts = new ColoredVertex[v.length];
+        for(int index = 0; index < verts.length; index++){
+            verts[index] = new ColoredVertex(v[index], c);
+        }
+        
+        byte[][] indices = new byte[v.length - 2][3];
         
         byte lastIndex = 1;
         for(int i = 0; i < indices.length; i++){
@@ -71,17 +75,9 @@ public class RenderablePoly extends Poly implements Renderable{
      * @param c color to be used
      */
     public void setColor(Color c){
-        colors = new Color[super.getPoints().length];
-        for(int i = 0; i < colors.length; i++){
-            colors[i] = c;
+        for(ColoredVertex cv : verts){
+            cv.setColor(c);
         }
-    }
-    /**
-     * Returns the currently used color
-     * @return the current color
-     */
-    public Color[] getColor(){
-        return colors;
     }
     /**
      * States whether or not the Poly will be rendered
@@ -108,10 +104,9 @@ public class RenderablePoly extends Poly implements Renderable{
     /**
      * Renders the polygon if the visibilty is set to true
      */
-    public void render() {
+    public void render(Renderer r) {
         if(!visible) return;
-        //renderer.setColor(colors);
-        //renderer.render(super.getAsArray(), tris);
+        r.render(verts, tris, Renderer.RenderMode.SIMPLE);
         
     }
 }
