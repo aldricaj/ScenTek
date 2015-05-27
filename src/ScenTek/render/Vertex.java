@@ -54,4 +54,8 @@ public class Vertex {
     public static int getSize(){
         return num_elements * element_size;
     }
+    
+    public float[] getElements(){
+        return getCoords();
+    }
 }

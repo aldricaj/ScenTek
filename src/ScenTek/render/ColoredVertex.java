@@ -35,4 +35,20 @@ public class ColoredVertex extends Vertex{
     public static int getSize(){
         return num_elements * Vertex.element_size;
     }
+    
+    @Override
+    public float[] getElements(){
+        float[] elements = new float[rgba.length + super.getCoords().length];
+        int index = 0;
+        float[] coords = super.getCoords();
+        for(int i = 0; i<coords.length; i++){
+            elements[index] = coords[i];
+            index++;
+        }
+        for(int i = 0; i < rgba.length; i++){
+            elements[index] = rgba[i];
+            index++;
+        }
+        return elements;
+    }
 }
